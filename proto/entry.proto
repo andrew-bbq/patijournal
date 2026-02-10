@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package entry;
+
+option go_package = "patijournal/pkg/pb";
+
+message Entry {
+  int32 id = 1;
+  string title = 2;
+  string body = 3;
+  string image = 4;
+}
+
+message GetEntriesRequest {}
+
+message GetEntriesResponse {
+  repeated Entry entries = 1;
+  string error_message = 2;
+}
+
+message GetEntryRequest {
+  int32 id = 1;
+}
+
+message GetEntryResponse {
+  Entry entry = 1;
+  string error_message = 2;
+}
+
+message CreateEntryRequest {
+  string title = 1;
+  string body = 2;
+  string image = 3;
+}
+
+message CreateEntryResponse {
+  Entry entry = 1;
+  string error_message = 2;
+}
+
+message UpdateEntryRequest {
+  int32 id = 1;
+  string title = 2;
+  string body = 3;
+  string image = 4;
+}
+
+message UpdateEntryResponse {
+  Entry entry = 1;
+  string error_message = 2;
+}
+
+service EntryService {
+  rpc GetEntries(GetEntriesRequest) returns (GetEntriesResponse);
+  rpc GetEntry(GetEntryRequest) returns (GetEntryResponse);
+  rpc CreateEntry(CreateEntryRequest) returns (CreateEntryResponse);
+  rpc UpdateEntry(UpdateEntryRequest) returns (UpdateEntryResponse);
+}
