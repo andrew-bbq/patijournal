@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate-proto": "node scripts/generate-proto.js"
+    "generate-proto": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./src/generated --proto_path=../proto ../proto/entry.proto"
   },
   "dependencies": {
     "react": "^19.2.0",
